@@ -1,0 +1,6 @@
+[
+    {
+        "name": "Clang-ARM",
+        "toolchainFile": "./toolchains/riscv64.cmake"
+    }
+]
