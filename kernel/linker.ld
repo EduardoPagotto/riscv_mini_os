@@ -1,3 +1,6 @@
+OUTPUT_FORMAT("elf64-littleriscv", "elf64-littleriscv", "elf64-littleriscv")
+OUTPUT_ARCH(riscv)
+
 ENTRY(start);
  
 . = 0x80000000;
