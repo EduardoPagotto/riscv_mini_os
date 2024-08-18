@@ -10,11 +10,19 @@ Using (some premises):
 
 Install deps: 
 ```bash
-# fedora
-# sudo dnf install llvm lldb qemu-system-riscv32 qemu-system-riscv64
+# CMake
+sudo dnf install cmake cmake-data cmake-rpm-macros
+# Install deps CLANG
+sudo dnf install clang clang-tools-extra 
+# Install deps os LLVM
+#sudo apt install llvm lld 
+sudo dnf install llvm lld libstdc++-static llvm-static llvm-devel llvm-test
+
+# QEMU
+sudo dnf install qemu-system-riscv
 
 # Ubuntu
-sudo apt install qemu-system-misc llvm lldm clang clang-format
+#sudo apt install qemu-system-misc llvm lldm clang clang-format
 
 # test
 llvm-objdump --version | grep riscv
