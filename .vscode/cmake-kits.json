@@ -1,10 +1,10 @@
 [
     {
-        "name": "clang-riscv64",
+        "name": "Clang Riscv 64",
         "toolchainFile": "./toolchains/riscv64.cmake"
     },
     {
-        "name": "clang-riscv32",
+        "name": "Clang Riscv 32",
         "toolchainFile": "./toolchains/riscv32.cmake"
     }
 ]

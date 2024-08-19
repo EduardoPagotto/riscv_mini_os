@@ -2,36 +2,38 @@
 
 <b>WARNNING:<i>Just a simple test in risc-v, work in progress !!!!</i> <p>
 
-Using (some premises):
+Features:
 - Clang as compiler (asm and c)
 - vscode as IDE
 - clang-format
 <p>
 
-Install deps: 
+### Install deps Fedora 40: 
 ```bash
 # CMake
 sudo dnf install cmake cmake-data cmake-rpm-macros
-# Install deps CLANG
-sudo dnf install clang clang-tools-extra 
-# Install deps os LLVM
-#sudo apt install llvm lld 
-sudo dnf install llvm lld libstdc++-static llvm-static llvm-devel llvm-test
+
+# CLANG and LLVM
+sudo dnf install clang clang-tools-extra llvm lld libstdc++-static llvm-static llvm-devel llvm-test
 
 # QEMU
 sudo dnf install qemu-system-riscv
+```
 
-# Ubuntu
-#sudo apt install qemu-system-misc llvm lldm clang clang-format
+### Install deps Ubuntu 24.04(incomplete): 
+```bash
+sudo apt install qemu-system-misc llvm lld  llvm lldm clang clang-format
+```
 
-# test
+### Test install
+```bash
 llvm-objdump --version | grep riscv
 
 riscv32    - 32-bit RISC-V
 riscv64    - 64-bit RISC-V
 ```
 
-Build all
+### Build all
 ```bash
 mkdir builld
 cd build
