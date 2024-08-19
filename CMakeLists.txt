@@ -7,7 +7,7 @@ enable_language(C)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_EXTENSIONS OFF)     # Force the usage of _ISOC11_SOURCE
-set(RISK_ARCH_SET_32 on)
+set(RISK_ARCH_SET_32 off)
 
 if (RISK_ARCH_SET_32)
     set(CMAKE_SYSTEM_PROCESSOR "RISCV32")
