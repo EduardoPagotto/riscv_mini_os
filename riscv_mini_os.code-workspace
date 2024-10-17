@@ -7,7 +7,7 @@
 	"settings": {
 		"editor.formatOnSave": true,
 		"editor.minimap.enabled": false,
-		"editor.fontFamily": "JetBrains Mono Light",
+		"editor.fontFamily": "JetBrains Mono",
 		"editor.fontSize": 15,
 		"editor.fontWeight": "normal",
 		"editor.fontLigatures": true,

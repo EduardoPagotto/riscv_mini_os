@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.28)
 
 PROJECT(kernel)
 
-set(GENERATED_FILES kernel.c 
-                    entry.s)
+set(GENERATED_FILES entry.s
+                    kernel.c )
 
 set(EXECUTABLE ${PROJECT_NAME}.elf)
 

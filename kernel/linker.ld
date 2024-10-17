@@ -1,15 +1,21 @@
 OUTPUT_FORMAT("elf64-littleriscv", "elf64-littleriscv", "elf64-littleriscv")
 OUTPUT_ARCH(riscv)
 
+MEMORY
+{
+   RAM (rwx)  : ORIGIN = 0x80000000, LENGTH = 128M 
+}
 ENTRY(start);
- 
-. = 0x80000000;
  
 SECTIONS {
 	/* Include entry point at start of binary */
 	.text : ALIGN(4K) {
+		PROVIDE(start = ORIGIN(RAM));
 		*(.init);
 		*(.text);
+	}
+	.rodata : ALIGN(4K) {
+		*(.rodata);
 	}
 	.bss : ALIGN(4K) {
 		PROVIDE(bss_start = .);
@@ -19,9 +25,6 @@ SECTIONS {
 		. += 4096;
 		PROVIDE(global_pointer = .);
 		PROVIDE(bss_end = .);
-	}
-	.rodata : ALIGN(4K) {
-		*(.rodata);
 	}
 	.data : ALIGN(4K) {
 		*(.data);

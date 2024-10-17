@@ -122,9 +122,12 @@ riscv64-unknow-elf-objcopy -O ihex hello hello.hex
 qemu-system-riscv32 -machine help
 qemu-system-riscv32 -machine sifive_e -nographic -bios none -kenel teste -->
 
+qemu-system-riscv64 -machine virt -bios none -kernel kernel.elf -serial mon:stdio
+
 ## refs:
 - https://wiki.osdev.org/RISC-V_Bare_Bones
 - https://llvm.org/docs/RISCVUsage.html
 - https://github.com/schoeberl/cae-lab
 - https://github.com/riscv-collab/riscv-gnu-toolchain/tree/master
 - https://stackoverflow.com/questions/55189463/how-to-debug-cross-compiled-qemu-program-with-gdb
+- https://github.com/riscv-non-isa/riscv-asm-manual/blob/main/riscv-asm.md
