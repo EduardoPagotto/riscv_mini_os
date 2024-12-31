@@ -12,8 +12,8 @@
 			120
 		],
 		// Editor
-		"editor.hover.hidingDelay": 500,
-		"editor.occurrencesHighlight": "off",
+		//"editor.hover.hidingDelay": 500,
+		//"editor.occurrencesHighlight": "off",
 		"editor.selectionHighlight": false,
 		"editor.suggestSelection": "recentlyUsed",
 		"editor.formatOnSave": true,
@@ -71,11 +71,79 @@
 		// lldb
 		"lldb.showDisassembly": "auto",
 		"lldb.dereferencePointers": true,
-		"lldb.consoleMode": "commands"
+		"lldb.consoleMode": "commands",
+		"lldb-dap.executable-path": "/usr/bin/lldb-dap"
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"type": "cmake",
+				"label": "CMake: configure",
+				"command": "configure",
+				"targets": [
+					"all"
+				],
+				"problemMatcher": [],
+				"detail": "CMake template configure task"
+			},
+			{
+				"type": "cmake",
+				"label": "CMake: build",
+				"command": "build",
+				"targets": [
+					"all"
+				],
+				"group": "build",
+				"problemMatcher": [],
+				"detail": "CMake template build task",
+				"dependsOn": [
+					"CMake: configure"
+				]
+			},
+			{
+				"label": "Run QEMU",
+				"type": "shell",
+				"command": "echo 'QEMU Started'; qemu-system-riscv32 -nographic -serial mon:stdio -machine virt  -s -S -bios ${workspaceFolder}/bin/kernel.elf",
+				"detail": "Dispara QEMU com VM para RISCV32",
+				// "dependsOn":["Build"],
+				"isBackground": true,
+				// "args": [],
+				"problemMatcher": [
+					{
+						"pattern": [
+							{
+								"regexp": ".",
+								"file": 1,
+								"location": 2,
+								"message": 3
+							}
+						],
+						"background": {
+							"activeOnStart": true,
+							"beginsPattern": ".",
+							"endsPattern": "QEMU Started",
+						}
+					}
+				],
+				"presentation": {
+					"reveal": "always"
+				},
+				"group": "build"
+			}
+		]
 	},
 	"launch": {
 		"version": "0.2.0",
 		"configurations": [
+			{
+				"name": "Local Debug Server",
+				"type": "lldb-dap",
+				"request": "attach",
+				"program": "${workspaceFolder}/bin/kernel.elf",
+				"gdb-remote-port": 1234,
+				"preLaunchTask": "Run QEMU"
+			},
 			{
 				"type": "venus",
 				"request": "launch",

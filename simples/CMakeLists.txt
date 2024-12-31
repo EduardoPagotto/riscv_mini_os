@@ -8,14 +8,17 @@ add_executable(${EXECUTABLE} ${GENERATED_FILES})
 #set (SfsInclude ${CMAKE_SOURCE_DIR}/include) # Raiz do projeto
 #target_include_directories (${EXECUTABLE} PUBLIC ${SfsInclude})
 
-target_compile_options(${EXECUTABLE} PRIVATE    
+target_compile_options(${EXECUTABLE} PRIVATE
                         --target=riscv32
                         -march=rv32ia
                         -nostdlib
                         -mabi=ilp32
                         -static
                         -c
+                        -g
+                        -O0
 )
+# obs: -g -O0 to debug simbols
 
 target_link_options(${EXECUTABLE} PRIVATE
         -T${CMAKE_SOURCE_DIR}/simples/mem_cfg.ld

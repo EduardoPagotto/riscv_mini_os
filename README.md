@@ -122,7 +122,15 @@ qemu-system-riscv32 -nographic -serial mon:stdio -machine virt -bios kernel.elf
 #qemu-system-riscv32 -machine sifive_e -nographic -bios none -kenel teste
 #qemu-system-riscv64 -machine virt -bios none -kernel kernel.elf -serial mon:stdio
 #qemu-system-riscv32 -machine sifive_e -nographic -bios none -kenel teste
+
+# executa debug remoto
+qemu-system-riscv32 -nographic -serial mon:stdio -machine virt -bios kernel.elf -s -S
+
+gdb kernel.elf  -q -ex 'target remote :1234'
 ```
+# Importante:
+para se rodar o debug necessario extenção LLDB-dap
+
 
 ## refs:
 - https://wiki.osdev.org/RISC-V_Bare_Bones
