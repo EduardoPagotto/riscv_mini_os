@@ -8,7 +8,7 @@ Features:
 - clang-format
 <p>
 
-### Install deps Fedora 40: 
+### Install deps Fedora 40:
 ```bash
 # CMake
 sudo dnf install cmake cmake-data cmake-rpm-macros
@@ -20,7 +20,7 @@ sudo dnf install clang clang-tools-extra llvm lld libstdc++-static llvm-static l
 sudo dnf install qemu-system-riscv
 ```
 
-### Install deps Ubuntu 24.04(incomplete): 
+### Install deps Ubuntu 24.04(incomplete):
 ```bash
 sudo apt install qemu-system-misc llvm lld  llvm lldm clang clang-format
 ```
@@ -40,7 +40,7 @@ cd build
 cmake ../ -DCMAKE_TOOLCHAIN_FILE=../toolchains/riscv64.cmake
 ```
 
-## Kernel 
+## Kernel
 ### Compiling direct
 ```bash
 cd kernel
@@ -59,17 +59,17 @@ clang --target=riscv64 -march=rv64i -nostdlib  -static -T linker.ld -nostdlib ..
 ### Runing
 ```bash
 # not working :(
-qemu-system-riscv64 -machine virt -m 512 -bios none -kernel kernel.elf -serial mon:stdio 
+qemu-system-riscv64 -machine virt -m 512 -bios none -kernel kernel.elf -serial mon:stdio
 #qemu-system-riscv64 -cpu rv64 -kernel kernel.elf
 ```
 
 ## IRQ
-### Simple build 
+### Simple build
 ```bash
 # Compile
 clang --target=riscv32 -march=rv32i -nostdlib -mabi=ilp32 -static -c -o app01.o app01.s
 # Link
-clang --target=riscv32 -march=rv32i -nostdlib -mabi=ilp32 -L. -Wl,-T,mem_cfg.ld -o app01 app01.o 
+clang --target=riscv32 -march=rv32i -nostdlib -mabi=ilp32 -L. -Wl,-T,mem_cfg.ld -o app01 app01.o
 ## Utils from ELF
 llvm-objdump -D app01  > app01_dump.s # dissasembler
 #llvm-objcopy -O ihex app01  app01.hex # hex file
@@ -86,7 +86,7 @@ mkdir -p ./build
 clang --target=riscv32 -march=rv32ia -nostdlib -mabi=ilp32 -static -c -o app01.o app01.s
 
 # Link
-clang --target=riscv32 -march=rv32ia -nostdlib -mabi=ilp32 -L. -Wl,-T,mem_cfg.ld -o app01 app01.o 
+clang --target=riscv32 -march=rv32ia -nostdlib -mabi=ilp32 -L. -Wl,-T,mem_cfg.ld -o app01 app01.o
 
 ## Utils from ELF
 llvm-objdump -D app01  > app01_dump.s # dissasembler
@@ -102,7 +102,7 @@ llvm-objdump -t -r app01  # show type exec
 clang --target=riscv32 -march=rv32i -nostdlib -mabi=ilp32 -static -c -o pgm.o teste.s
 
 # Linker
-clang --target=riscv32 -march=rv32i -nostdlib -mabi=ilp32 -L. -Wl,-T,teste.ld pgm.o  
+clang --target=riscv32 -march=rv32i -nostdlib -mabi=ilp32 -L. -Wl,-T,teste.ld pgm.o
 
 # OR Compile and Linker
 clang --target=riscv32 -march=rv32i -nostdlib -mabi=ilp32 -static -L. -Wl,-T,teste.ld,-Map=pgm.map -o pgm.o teste.s
@@ -113,16 +113,16 @@ llvm-objdump -t -r pgm.o # show type exec
 llvm-objcopy -O ihex pgm.o pgm.hex # hex file
 llvm-objcopy -O binary pgm.o pgm.bin # binary final !!!!!
 
+# teste
+# Mostra firmware cfg
+qemu-system-riscv32 -nographic -serial mon:stdio -machine virt
+
+# executa
+qemu-system-riscv32 -nographic -serial mon:stdio -machine virt -bios kernel.elf
+#qemu-system-riscv32 -machine sifive_e -nographic -bios none -kenel teste
+#qemu-system-riscv64 -machine virt -bios none -kernel kernel.elf -serial mon:stdio
+#qemu-system-riscv32 -machine sifive_e -nographic -bios none -kenel teste
 ```
-
-<!-- ## compilar codigo e emular no qemu
-riscv64-unknow-elf-gcc -march=rv32g -mabi=ilp32 -static -mcmodel=medany -fvisibitity=hiddem -nostdlib -nostartfiles -Tteste.ld teste.s -o teste.o
-riscv64-unknow-elf-objcopy -O ihex hello hello.hex
-
-qemu-system-riscv32 -machine help
-qemu-system-riscv32 -machine sifive_e -nographic -bios none -kenel teste -->
-
-qemu-system-riscv64 -machine virt -bios none -kernel kernel.elf -serial mon:stdio
 
 ## refs:
 - https://wiki.osdev.org/RISC-V_Bare_Bones

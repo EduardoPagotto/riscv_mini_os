@@ -7,7 +7,7 @@ enable_language(C)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_EXTENSIONS OFF)     # Force the usage of _ISOC11_SOURCE
-set(RISK_ARCH_SET_32 off)
+set(RISK_ARCH_SET_32 on)
 
 if (RISK_ARCH_SET_32)
     set(CMAKE_SYSTEM_PROCESSOR "RISCV32")
@@ -25,8 +25,8 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
 add_subdirectory(kernel)
-add_subdirectory(irq)
-add_subdirectory(simples)
+#add_subdirectory(irq)
+#add_subdirectory(simples)
 
 # clean
 add_custom_target (clean-all COMMAND rm -rf ${CMAKE_BINARY_DIR}/*

@@ -12,9 +12,11 @@ add_executable(${EXECUTABLE} ${GENERATED_FILES})
 #set (SfsInclude ${CMAKE_SOURCE_DIR}/include) # Raiz do projeto
 #target_include_directories (${EXECUTABLE} PUBLIC ${SfsInclude})
 
-target_compile_options(${EXECUTABLE} PRIVATE    
-                        --target=riscv64
-                        -march=rv64gc
+target_compile_options(${EXECUTABLE} PRIVATE
+                        #--target=riscv64
+                        #-march=rv64gc
+                        --target=riscv32
+                        -march=rv32i
                         -nostdlib
                         -static
                         -Wall
@@ -25,8 +27,10 @@ target_compile_options(${EXECUTABLE} PRIVATE
 
 target_link_options(${EXECUTABLE} PRIVATE
         -T${CMAKE_SOURCE_DIR}/kernel/linker.ld
-        --target=riscv64
-        -march=rv64gc
+        #--target=riscv64
+        #-march=rv64gc
+        --target=riscv32
+        -march=rv32i
         -nostdlib
         -L.
         -Wl
