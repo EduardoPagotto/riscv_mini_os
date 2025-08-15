@@ -24,9 +24,9 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
-#add_subdirectory(kernel)
-#add_subdirectory(irq)
-#add_subdirectory(simples)
+add_subdirectory(kernel)
+add_subdirectory(driver)
+add_subdirectory(samples/app0)
 add_subdirectory(samples/hello)
 
 # clean

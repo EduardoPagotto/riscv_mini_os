@@ -2,10 +2,8 @@
 
 ref: https://www.youtube.com/watch?v=n8g_XKSSqRo&t=247s
 
-
-Manual step-to-step
 ```bash
-# compile
+# compile manual step-to-step
 clang --target=riscv32 \
        -march=rv32g \
        -nostdlib  \
@@ -16,28 +14,18 @@ clang --target=riscv32 \
        hello.s \
        -o hello
 
-# HEX to board
+# HEX to board (change '. = 0x20400000;' in hello.ld to '. = 0x20010000;')
 llvm-objcopy -O ihex hello hello.hex
 
-# test qemu
-qemu-system-riscv32 -machine sifive_e -nographic -bios none -kernel ../../bin/hello.elf
-qemu-system-riscv32 -machine sifive_e -nographic -bios none -kernel ./hello.elf
-```
-
-
-mkdir build
-cd build
-
-cmake -DCMAKE_BUILD_TYPE=Debug \
-      -DCMAKE_EXPORT_COMPILE_COMMANDS=TRUE \
-      -DCMAKE_TOOLCHAIN_FILE=./toolchains/riscv_simple.cmake \
-      -B/home/pagotto/Projetos/pessoal/riscv_mini_os/build \
-      -G "Unix Makefiles"
-make
-
+# or
 cmake -DCMAKE_BUILD_TYPE=Debug \
       -DCMAKE_EXPORT_COMPILE_COMMANDS=TRUE \
       -DCMAKE_TOOLCHAIN_FILE=./toolchains/riscv_simple.cmake \
       -B./build \
       -G "Unix Makefiles"
+cd build
 make
+
+# test qemu
+qemu-system-riscv32 -machine sifive_e -nographic -bios none -kernel ./bin/hello.elf
+```

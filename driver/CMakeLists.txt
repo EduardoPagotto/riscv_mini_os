@@ -10,7 +10,7 @@ add_executable(${EXECUTABLE} ${GENERATED_FILES})
 #set (SfsInclude ${CMAKE_SOURCE_DIR}/include) # Raiz do projeto
 #target_include_directories (${EXECUTABLE} PUBLIC ${SfsInclude})
 
-target_compile_options(${EXECUTABLE} PRIVATE    
+target_compile_options(${EXECUTABLE} PRIVATE
                         --target=riscv32
                         -march=rv32i
                         -nostdlib
@@ -20,7 +20,7 @@ target_compile_options(${EXECUTABLE} PRIVATE
 )
 
 target_link_options(${EXECUTABLE} PRIVATE
-        -T${CMAKE_SOURCE_DIR}/irq/mem_cfg.ld
+        -T${CMAKE_CURRENT_SOURCE_DIR}/mem_cfg.ld
         --target=riscv32
         -march=rv32i
         -nostdlib

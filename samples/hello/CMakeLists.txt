@@ -11,7 +11,6 @@ target_compile_options(${EXECUTABLE} PRIVATE
                         -mabi=ilp32
                         -static
                         -nostartfiles
-                        -Thello.ld
 )
 # obs: -g -O0 to debug simbols
 

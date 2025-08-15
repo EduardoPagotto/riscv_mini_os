@@ -26,7 +26,7 @@ target_compile_options(${EXECUTABLE} PRIVATE
 )
 
 target_link_options(${EXECUTABLE} PRIVATE
-        -T${CMAKE_SOURCE_DIR}/kernel/linker.ld
+        -T${CMAKE_CURRENT_SOURCE_DIR}/linker.ld
         #--target=riscv64
         #-march=rv64gc
         --target=riscv32

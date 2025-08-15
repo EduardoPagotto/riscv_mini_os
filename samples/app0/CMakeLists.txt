@@ -21,7 +21,7 @@ target_compile_options(${EXECUTABLE} PRIVATE
 # obs: -g -O0 to debug simbols
 
 target_link_options(${EXECUTABLE} PRIVATE
-        -T${CMAKE_SOURCE_DIR}/simples/mem_cfg.ld
+        -T${CMAKE_CURRENT_SOURCE_DIR}/mem_cfg.ld
         --target=riscv32
         -march=rv32ia
         -nostdlib
