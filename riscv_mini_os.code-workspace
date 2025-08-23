@@ -153,7 +153,7 @@
 			{
 				"label": "Run QEMU",
 				"type": "shell",
-				"command": "echo 'QEMU Started'; qemu-system-riscv32 -nographic -serial mon:stdio -machine virt  -s -S -bios ${workspaceFolder}/bin/kernel.elf",
+				"command": "echo 'QEMU Started'; qemu-system-riscv32 -nographic -serial mon:stdio -machine virt -s -S -bios ${workspaceFolder}/bin/app1.elf",
 				"detail": "Dispara QEMU com VM para RISCV32",
 				// "dependsOn":["Build"],
 				"isBackground": true,
@@ -192,6 +192,26 @@
 				"program": "${workspaceFolder}/bin/kernel.elf",
 				"gdb-remote-port": 1234,
 				"preLaunchTask": "Run QEMU"
+			},
+			{
+				"name": "Debug APP1-GDB",
+				"type": "cppdbg",
+				"request": "launch",
+				"program": "${workspaceRoot}/bin/app1.elf",
+				"cwd": "${workspaceFolder}",
+				"miDebuggerPath": "/usr/bin/gdb",
+				"miDebuggerServerAddress": "localhost:1234",
+				"stopAtEntry": true,
+				//"preLaunchTask": "Run QEMU"
+			},
+			{
+				"name": "Debug APP1-LLDB",
+				"type": "lldb-dap",
+				"request": "attach",
+				"program": "${workspaceRoot}/bin/app1.elf",
+				"waitFor": true,
+				"gdb-remote-hostname": "localhost",
+				"gdb-remote-port": 1234
 			}
 			//,
 			// {

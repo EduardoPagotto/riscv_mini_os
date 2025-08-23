@@ -27,6 +27,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 add_subdirectory(kernel)
 add_subdirectory(driver)
 add_subdirectory(samples/app0)
+add_subdirectory(samples/app1)
 add_subdirectory(samples/hello)
 
 # clean

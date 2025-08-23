@@ -35,4 +35,4 @@ halt:
             j halt
 
 .section   .rodata
-msg:       .string "Hello World\n."
+msg:       .string "QEMU hello World 100% assembler, sifive_e emulator\n."
