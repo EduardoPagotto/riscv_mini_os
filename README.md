@@ -49,6 +49,7 @@ make
 ### Projects
 - [Hello](./samples/hello/README.md)
 - [App0](./samples/app0/README.md)
+- [App1](./samples/app1/README.md)
 - [Kernel](./samples/kernel/README.md)
 
 

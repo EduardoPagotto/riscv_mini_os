@@ -26,8 +26,8 @@ void uart_puts(const char* str) {
 
 void main(void) {
 
-    UART0_FCR = UARTFCR_FFENA;     // Set the fifo for polled operation
-    uart_puts("Ola mundo!!!!!\n"); // Write the string to the UART
-    while (1)                      // Loop forever, prevent program from ending
+    UART0_FCR = UARTFCR_FFENA;                         // Set the fifo for polled operation
+    uart_puts("Qemu minimal ass, c Ola mundo!!!!!\n"); // Write the string to the UART
+    while (1)                                          // Loop forever, prevent program from ending
         ;
 }
