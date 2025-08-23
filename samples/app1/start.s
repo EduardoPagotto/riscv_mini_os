@@ -16,3 +16,4 @@ loop: j loop             # Spin forever case main return
 .align 16                # Smallest stack allocation is 16 bytes, so align accordingly
 __stack_top:             # the stack grows
     nop
+.end

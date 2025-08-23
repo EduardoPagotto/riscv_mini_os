@@ -1,7 +1,7 @@
 .section .text # Code area
-.globl _start # entry point 
+.globl _start # entry point
 
-#  Default values        
+#  Default values
 .equ CSR_MSTATUS, 0x00000008
 .equ CSR_MISA, 0x40000100
 .equ CSR_MIE, 0x00000888
@@ -132,4 +132,4 @@ data01: .4byte 0x00112233
 
 .section .bss
 value1: .word 0x0
-
+.end

@@ -49,7 +49,7 @@ make
 ### Projects
 - [Hello](./samples/hello/README.md)
 - [App0](./samples/app0/README.md)
-- [Kernel](./kernel/README.md)
+- [Kernel](./samples/kernel/README.md)
 
 
 ## refs:

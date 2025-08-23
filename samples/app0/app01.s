@@ -1,5 +1,5 @@
 .section .text # Code area
-.globl _start # entry point 
+.globl _start # entry point
 
 _start:
     la sp,_stack_top
@@ -47,7 +47,7 @@ cont1:
     la t0, data03
     lb t1, 0(t0)
     li t1, 0x34
-    sb t1, 0(t0)    
+    sb t1, 0(t0)
     #
     # Salva registro no stack
     #
@@ -88,19 +88,19 @@ salto3:
     wfi
     #
     # Sub Rotina de loop
-    # "for(t0=_free_ram; t0 < (_free_ram + 5); t0++)" 
+    # "for(t0=_free_ram; t0 < (_free_ram + 5); t0++)"
     #   t2 = mem[t0] ; t2 = 0; mem[t0] = 0;
     # t0 endereco indice base
     # t1 meta
     # t2 dado
-teste1: 
+teste1:
     la t0,_free_ram  # carrega inicio da memoria livre
     addi t1, t0, 5  # tamanho do loop
 loop1:
-    lb t2, 0(t0)     # carga do byte armazenado na memoria 
+    lb t2, 0(t0)     # carga do byte armazenado na memoria
     mv t2, zero      # zera dado
     sb t2, 0(t0)     # armazena o zero na memoria
-    addi t0, t0, 1   # incrementa proximo endereco   
+    addi t0, t0, 1   # incrementa proximo endereco
     blt t0, t1, loop1# continua loop se nao terminou
     #
     # Salva endereco de retorno na pilha ante do proximo salto
@@ -113,25 +113,26 @@ loop1:
     lw ra, 0(sp)
     addi sp, sp, 4
     # retora ao chamador
-    ret              
+    ret
 
 
 // Global Vals
 .section .rodata // Constants
-msg_erroc: .string "erro fatal\n"
-msg_err2c: .string "Falha de pagina\n"
+    msg_erroc: .string "erro fatal\n"
+    msg_err2c: .string "Falha de pagina\n"
 
 .section .data   // rw inicializadas com valor
-data01: .4byte 0x00112233
-data02: .2byte 0xfcde
-data03: .byte 0x73
-data04: .byte 0x73
-data05: .byte 0x71
+    data01: .4byte 0x00112233
+    data02: .2byte 0xfcde
+    data03: .byte 0x73
+    data04: .byte 0x73
+    data05: .byte 0x71
 
 .section .bss
-value1: .word 0x0
-value2: .word 0x0
+    value1: .word 0x0
+    value2: .word 0x0
 //.bss value1, 8, 4
 # .section .bss // rw nao inicializadas [.bss symbol, lenght, align]
 # value1, 4, 4//.8byte 00,00,00,00,00,00,00,00
 # value2, 4, 4//.8byte 00,00,00,00,00,00,00,00
+.end
