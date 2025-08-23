@@ -20,9 +20,7 @@ clang --target=riscv64 -march=rv64i -nostdlib  -static -T linker.ld -nostdlib ..
 ```
 ### Runing
 ```bash
-# not working :(
-qemu-system-riscv64 -machine virt -m 128 -bios none -kernel kernel.elf -serial mon:stdio
-#qemu-system-riscv64 -cpu rv64 -kernel kernel.elf
+qemu-system-riscv32 -nographic -serial mon:stdio -machine virt -bios ./bin/kernel.elf
 ```
 
 ## IRQ

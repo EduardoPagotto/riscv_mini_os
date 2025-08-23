@@ -151,9 +151,39 @@
 				]
 			},
 			{
-				"label": "Run QEMU",
+				"label": "Run QEMU APP1",
 				"type": "shell",
 				"command": "echo 'QEMU Started'; qemu-system-riscv32 -nographic -serial mon:stdio -machine virt -s -S -bios ${workspaceFolder}/bin/app1.elf",
+				"detail": "Dispara QEMU com VM para RISCV32",
+				// "dependsOn":["Build"],
+				"isBackground": true,
+				// "args": [],
+				"problemMatcher": [
+					{
+						"pattern": [
+							{
+								"regexp": ".",
+								"file": 1,
+								"location": 2,
+								"message": 3
+							}
+						],
+						"background": {
+							"activeOnStart": true,
+							"beginsPattern": ".",
+							"endsPattern": "QEMU Started",
+						}
+					}
+				],
+				"presentation": {
+					"reveal": "always"
+				},
+				"group": "build"
+			},
+			{
+				"label": "Run QEMU Kernel",
+				"type": "shell",
+				"command": "echo 'QEMU Started'; qemu-system-riscv32 -nographic -serial mon:stdio -machine virt -s -S -bios ${workspaceFolder}/bin/kernel.elf",
 				"detail": "Dispara QEMU com VM para RISCV32",
 				// "dependsOn":["Build"],
 				"isBackground": true,
@@ -209,6 +239,15 @@
 				"type": "lldb-dap",
 				"request": "attach",
 				"program": "${workspaceRoot}/bin/app1.elf",
+				"waitFor": true,
+				"gdb-remote-hostname": "localhost",
+				"gdb-remote-port": 1234
+			},
+			{
+				"name": "Debug Kernel-LLDB",
+				"type": "lldb-dap",
+				"request": "attach",
+				"program": "${workspaceRoot}/bin/kernel.elf",
 				"waitFor": true,
 				"gdb-remote-hostname": "localhost",
 				"gdb-remote-port": 1234
