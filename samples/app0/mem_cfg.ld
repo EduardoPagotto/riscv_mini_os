@@ -7,7 +7,7 @@ __start_memory_rom = 0x000;
 __size_memory_rom = 0x200;
 __start_memory_ram = 0x200;
 __size_memory_ram = 0x200;
- 
+
 MEMORY
 {
   ROM (rx)  : ORIGIN = __start_memory_rom, LENGTH = __size_memory_rom
@@ -17,30 +17,30 @@ MEMORY
 
 SECTIONS
 {
-    .text : { 
+    .text : {
         . = ALIGN(4);
-        *(.text) 
+        *(.text)
         . = ALIGN(4);
     } > ROM
 
-    .rodata : { 
+    .rodata : {
         . = ALIGN(4);
         *(.rodata)
         . = ALIGN(4);
     } > ROM
 
-    .data (NOLOAD): { 
+    .data (NOLOAD): {
         . = ALIGN(4);
-        *(.data) 
+        *(.data)
         . = ALIGN(4);
     } > RAM
 
-    .bss (NOLOAD): { 
+    .bss (NOLOAD): {
         . = ALIGN(4);
         *(.bss)
         *(.comment)
         . = ALIGN(4);
-    } > RAM 
+    } > RAM
 
     _free_ram = .;
 
