@@ -4,8 +4,9 @@
 
 Features:
 - Clang as compiler (asm and c)
-- vscode as IDE
-- clang-format
+- VSCode as IDE
+- Text Format code with clang-format
+- CMake for build system
 <p>
 
 ### Install deps Fedora 40:
