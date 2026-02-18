@@ -18,7 +18,7 @@
 		"editor.cursorBlinking": "blink",
 		"editor.cursorSmoothCaretAnimation": "on",
 		"editor.cursorStyle": "line",
-		"editor.hover.enabled": false, // hover manual crt+k, crt+i
+		"editor.hover.enabled": "off", // hover manual crt+k, crt+i
 		"editor.occurrencesHighlight": "off", // off disable highligh
 		"editor.selectionHighlight": false, // True show similar selectec
 		"editor.suggestOnTriggerCharacters": false,
@@ -251,16 +251,15 @@
 				"waitFor": true,
 				"gdb-remote-hostname": "localhost",
 				"gdb-remote-port": 1234
-			}
-			//,
-			// {
-			// 	"type": "venus",
-			// 	"request": "launch",
-			// 	"name": "Venus Debug Current File",
-			// 	"program": "${file}",
-			// 	"stopOnEntry": true,
-			// 	"openViews": []
-			// },
+			},
+			{
+				"type": "venus",
+				"request": "launch",
+				"name": "Venus Debug Current File",
+				"program": "${file}",
+				"stopOnEntry": true,
+				"openViews": []
+			},
 		],
 		"compounds": []
 	}

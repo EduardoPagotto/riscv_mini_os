@@ -9,7 +9,7 @@ Features:
 - CMake for build system
 <p>
 
-### Install deps Fedora 40:
+### Install deps and sets in Fedora 43:
 ```bash
 # CMake
 sudo dnf install cmake cmake-data cmake-rpm-macros
@@ -19,14 +19,25 @@ sudo dnf install clang clang-tools-extra llvm lld libstdc++-static llvm-static l
 
 # QEMU
 sudo dnf install qemu-system-riscv
+
+# Change default Linker to LLVM (ld.lld)
+
+# List all alternativer
+update-alternatives --list
+
+# List alternativer of linker
+update-alternatives --config ld
+
+# Set linker to ld.lld
+sudo update-alternatives --config ld
 ```
 
-### Install deps Ubuntu 24.04(incomplete):
+### Install deps and sets in Ubuntu 24.04(TODO!!):
 ```bash
 sudo apt install qemu-system-misc llvm lld  llvm lldm clang clang-format
 ```
 
-### Test install
+## Test install
 ```bash
 llvm-objdump --version | grep riscv
 
@@ -34,7 +45,7 @@ riscv32    - 32-bit RISC-V
 riscv64    - 64-bit RISC-V
 ```
 
-### Build all
+## Build all
 ```bash
 cmake -DCMAKE_BUILD_TYPE=Debug \
       -DCMAKE_EXPORT_COMPILE_COMMANDS=TRUE \
@@ -47,7 +58,7 @@ cd build
 make
 ```
 
-### Projects
+### Examples of apps to test
 - [Hello](./samples/hello/README.md)
 - [App0](./samples/app0/README.md)
 - [App1](./samples/app1/README.md)
