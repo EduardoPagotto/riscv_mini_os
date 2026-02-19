@@ -122,6 +122,7 @@
 		"cmake.configureOnOpen": true,
 		"cmake.options.statusBarVisibility": "visible",
 		"cmake.useCMakePresets": "never",
+		"riscv-venus.variableFormat": "hex",
 	},
 	"tasks": {
 		"version": "2.0.0",
