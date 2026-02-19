@@ -217,10 +217,18 @@
 		"version": "0.2.0",
 		"configurations": [
 			{
-				"name": "Local Debug Server",
+				"name": "Debug QEMU RISCV32 LLDB",
+				"type": "lldb",
+				"request": "attach",
+				"targetCreateCommands": ["target create ${workspaceRoot}/bin/teste_code.elf"], //${workspaceFolder}
+				"processCreateCommands": ["gdb-remote localhost:1234"],
+				"program": "${workspaceRoot}/bin/teste_code.elf"
+			},
+			{
+				"name": "Local Debug Server LLDB-DAP",
 				"type": "lldb-dap",
 				"request": "attach",
-				"program": "${workspaceFolder}/bin/kernel.elf",
+				"program": "${workspaceRoot}/bin/kernel.elf",
 				"gdb-remote-port": 1234,
 				"preLaunchTask": "Run QEMU"
 			},
@@ -229,7 +237,7 @@
 				"type": "cppdbg",
 				"request": "launch",
 				"program": "${workspaceRoot}/bin/app1.elf",
-				"cwd": "${workspaceFolder}",
+				"cwd": "${workspaceRoot}",
 				"miDebuggerPath": "/usr/bin/gdb",
 				"miDebuggerServerAddress": "localhost:1234",
 				"stopAtEntry": true,
