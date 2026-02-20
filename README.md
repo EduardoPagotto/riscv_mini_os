@@ -69,22 +69,60 @@ make
       `
 
 4. Setting up VS Code for Debug <p>
-      <i>.vscode/launch.json (ou no workspace)</i>
+      <i>.vscode/launch.json (or in workspace)</i>
       ```json
       {
       "version": "0.2.0",
       "configurations": [
             {
-                  "type": "lldb",
-                  "request": "custom",
-                  "name": "Debug QEMU RISCV32",
-                  "targetCreateCommands": ["target create ${workspaceFolder}/teste_code.elf"],
-                  "processCreateCommands": ["gdb-remote localhost:1234"],
-                  "program": "${workspaceFolder}/teste_code.elf"
+                  "name": "BareMetal LLDB-DAP",
+                  "type": "lldb-dap",
+                  "request": "attach",
+                  "program": "${workspaceRoot}/bin/baremetal.elf",
+                  "preLaunchTask": "RunQEMUBareMetal",
+                  "attachCommands": [
+                        "target create ${workspaceRoot}/bin/teste_code.elf",
+                        "gdb-remote localhost:1234"
+                  ]
             }
       ]
       }
       ```
+
+      <i>.vscode/tasks.json (or in workspace)</i>
+      ```json
+      "tasks": {
+            "version": "2.0.0",
+            "tasks": [
+                  {
+                        "label": "RunQEMUBareMetal",
+                        "type": "shell",
+                        "command": "qemu-system-riscv32 -machine virt -cpu rv32 -smp 1 -nographic -bios none -kernel ${workspaceRoot}/bin/baremetal.elf -s -S",
+                        "detail": "Dispara QEMU para baremetal.elf",
+                        "isBackground": true,
+                        // "dependsOn":["Build"],
+                        "problemMatcher": [
+                              {
+                                    "pattern": [
+                                          {
+                                                "regexp": ".",
+                                                "file": 1,
+                                                "location": 2,
+                                                "message": 3
+                                          }
+                                    ],
+                                    "background": {
+                                          "activeOnStart": true,
+                                          "beginsPattern": ".",
+                                          "endsPattern": "QEMU Started",
+                                    }
+                              }
+                        ]
+                  }
+            ]
+            }
+      ```
+
 
 5. LLDB commands (alternative) to run outside of VS Code
       ```bash
