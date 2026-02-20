@@ -1,36 +1,29 @@
-PROJECT(app_test)
+cmake_minimum_required(VERSION 3.28)
+project(baremetal)
 
-set(GENERATED_FILES app01.s)
+set(GENERATED_FILES boot.s
+                    traps.s
+                    kernel.s
+                    main.c
+                    driver_uart.c
+)
+
 set(EXECUTABLE ${PROJECT_NAME}.elf)
 
 add_executable(${EXECUTABLE} ${GENERATED_FILES})
 
-#set (SfsInclude ${CMAKE_SOURCE_DIR}/include) # Raiz do projeto
-#target_include_directories (${EXECUTABLE} PUBLIC ${SfsInclude})
-
-target_compile_options(${EXECUTABLE} PRIVATE
-                        --target=riscv32
-                        -march=rv32ia
-                        -nostdlib
-                        -mabi=ilp32
-                        -static
-                        -c
-                        -g
-                        -O0
+target_compile_options(${EXECUTABLE} PRIVATE --target=riscv32
+                                             -march=rv32i
+                                             -mabi=ilp32
+                                             -nostdlib
 )
-# obs: -g -O0 to debug simbols
 
-target_link_options(${EXECUTABLE} PRIVATE
-        -T${CMAKE_CURRENT_SOURCE_DIR}/mem_cfg.ld
-        --target=riscv32
-        -march=rv32ia
-        -nostdlib
-        -mabi=ilp32
-        -L.
-        -Wl
-        #-Map=${PROJECT_NAME}.map
-        # --cref
-        #--gc-sections
+target_link_options(${EXECUTABLE} PRIVATE -T${CMAKE_CURRENT_SOURCE_DIR}/linker.ld
+                                          -fuse-ld=lld
+                                          -nostdlib
+                                          --target=riscv32
+                                          -march=rv32i
+                                          -O2
 )
 
 # Create aux files

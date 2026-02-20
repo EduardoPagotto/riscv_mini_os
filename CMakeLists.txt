@@ -24,14 +24,10 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
-add_subdirectory(samples/kernel)
-add_subdirectory(samples/driver)
-add_subdirectory(samples/app0)
-add_subdirectory(samples/app1)
-add_subdirectory(samples/hello)
+
+add_subdirectory(samples/baremetal)
 
 # clean
-# Clean
 add_custom_target (clean-all COMMAND rm -rf ${CMAKE_BINARY_DIR}/*
                              COMMAND rm -rf ${CMAKE_BINARY_DIR}/.cmake
                              COMMAND rm -rf ${CMAKE_BINARY_DIR}/.ninja_*
